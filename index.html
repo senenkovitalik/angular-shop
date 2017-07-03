@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Angular</title>
+  <script src="lib/chance.js"></script>
+	<script src="lib/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.2.25/angular-sanitize.js"></script>
+  <link rel="stylesheet" type="text/css" href="style/style.css">
+</head>
+<body>
+
+<div ng-app="myShopingList" ng-controller="pageCtrl as page">
+
+  <div class="main-container clearfix" ng-controller="productsCtrl">
+
+    <div class="empty" ng-show="products.length === 0">
+      <h1>Sorry, but we don't have any products:-(</h1>
+    </div>
+
+    <div class="controls" ng-hide="products.length === 0">
+      Sorting
+      <button ng-click="orderByMe('name'); toggleArrow('name');">
+        Name <span ng-bind-html="nameArrow"></span>
+      </button>
+      <button ng-click="orderByMe('price'); toggleArrow('price');">
+        Price <span ng-bind-html="priceArrow"></span>
+      </button>
+      View
+      <button ng-click="page.changeViewMode('table')" ng-disabled="!list">Table</button>
+      <button ng-click="page.changeViewMode('list')" ng-disabled="list">List</button>
+    </div>
+
+    <div class="products">
+      <div ng-repeat="x in products | orderBy : orderValue : reverse" class="product-item" ng-class="{'product-item-list': list}">
+        <div class="product-image" ng-class="{'product-image-list': list}">
+          <img ng-src="{{x.image}}" width="400" height="300">
+        </div>
+        <div class="product-info" ng-class="{'product-info-list': list}">
+          <div class="product-name">{{x.name}}</div>
+          <div class="some-info">
+            <p>{{x.description}}</p>
+          </div>
+          <div class="product-price">{{x.price}}</div>
+          <button ng-disabled="{{x.isAvailable}}">Buy</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="myApp.js"></script>
+<script src="PageController.js"></script>
+<script src="ProductsController.js"></script>
+
+</body>
+</html>
