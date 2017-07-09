@@ -1,0 +1,26 @@
+{
+  "name": "angular-shop",
+  "version": "1.0.0",
+  "description": "Homework",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/senenkovitalik/angular-shop.git"
+  },
+  "author": "Senenko Vitaliy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/senenkovitalik/angular-shop/issues"
+  },
+  "homepage": "https://github.com/senenkovitalik/angular-shop#readme",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-sanitize": "^1.6.5",
+    "bootstrap": "^3.3.7",
+    "chance": "^1.0.10",
+    "jquery": "^3.2.1"
+  }
+}
