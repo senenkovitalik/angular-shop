@@ -34,17 +34,77 @@
     </div>
 
     <div class="products">
-      <div ng-repeat="x in products | orderBy : orderValue : reverse" class="product-item" ng-class="{'product-item-list': list}">
-        <div class="product-image" ng-class="{'product-image-list': list}">
-          <img ng-src="{{x.image}}" width="400" height="300">
+        <div ng-repeat="x in products | orderBy : orderValue : reverse" class="product-item" ng-class="{'product-item-list': list}">
+            <div class="product-image" ng-class="{'product-image-list': list}">
+            <img ng-src="{{x.image}}" width="400" height="300">
         </div>
         <div class="product-info" ng-class="{'product-info-list': list}">
-          <div class="product-name">{{x.name}}</div>
-          <div class="some-info">
-            <p>{{x.description}}</p>
-          </div>
-          <div class="product-price">{{x.price}}</div>
-          <button ng-disabled="{{x.isAvailable}}">Buy</button>
+            <div class="product-name">{{x.name}}</div>
+            <div class="some-info">
+                <p>{{x.description}}</p>
+            </div>
+            <div class="buy clearfix">
+                <div class="product-price">{{x.price}}</div>
+                <button class="btn btn-default" ng-disabled="{{x.isAvailable}}">Buy</button>
+            </div>    
+            <div class="forms">
+                <ul class="nav nav-pills nav-justified">
+                    <li class="active"><a data-toggle="pill" href="#menu1">Menu item</a></li>
+                    <li><a data-toggle="pill" href="#reviews">Reviews</a></li>
+                    <li><a data-toggle="pill" href="#specifications">Specifications</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="menu1" class="tab-pane fade in active">
+                        <h3>Menu item</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div id="reviews" class="tab-pane fade">
+                        <h3>Reviews</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div id="specifications" class="tab-pane">
+                        <form>
+                            <div class="form-group">
+                                <label for="weight">Weight:</label>
+                                <input type="number" class="form-control input-sm" ng-model="weight" id="weight" min="0" />
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country:</label>
+                                <input type="text" class="form-control input-sm" ng-model="country" id="country" />
+                            </div>
+                            <div class="form-group">
+                                <label for="angles">Angles:</label>
+                                <select class="form-control input-sm" id="angles">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tech">Tech. description:</label>
+                                <textarea class="form-control input-sm" rows="5" id="tech" ng-model="tech"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" class="input-sm" ng-model="pretty">Pretty</label>
+                                </div>    
+                            </div>
+                            <div class="form-group">
+                                <div class="radio-inline">
+                                    <label><input type="radio" name="optradio" checked="checked">Male</label>
+                                </div>
+                                <div class="radio-inline">
+                                    <label><input type="radio" name="optradio">Female</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
     </div>

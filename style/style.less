@@ -1,21 +1,25 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   background-color: orange;
   font-family: Arial, sans-serif;
 }
+
 .empty {
   text-align: center;
   margin-top: 300px;
 }
+
 .controls {
   margin: 10px auto;
   padding: 10px;
-  background-color: #fff;
+  background-color: #fff; 
   width: 350px;
 }
+
 .products {
   margin: 0 auto;
   width: 904px;
@@ -25,6 +29,7 @@ body {
   justify-content: center;
   align-items: flex-start;
 }
+
 .product-item {
   border: 1px solid black;
   background-color: #fff;
@@ -32,28 +37,34 @@ body {
   width: 432px;
   margin: 10px;
 }
+
 .product-item-list {
   width: 100%;
 }
+
 .product-image {
   width: 400px;
   height: 300px;
 }
+
 .product-image-list {
   float: left;
   margin-right: 15px;
 }
+
 .product-info-list {
   float: left;
   width: 50%;
   margin-left: 10px;
   padding: 0 10px;
 }
+
 .product-name {
   text-align: center;
   text-transform: uppercase;
   padding: 10px;
 }
+
 .some-info {
   text-indent: 25px;
   text-align: justify;
@@ -61,18 +72,26 @@ body {
   margin-bottom: 15px;
   overflow-y: hidden;
 }
+
 .some-info p {
   margin: 0;
 }
+
 .product-price {
   float: left;
 }
-.product-info .buy button {
-  float: right;
+
+.product-info {
+  .buy {
+    button {
+      float: right;
+    }
+  }
+  .forms {
+    margin-top: 10px;
+  }
 }
-.product-info .forms {
-  margin-top: 10px;
-}
+
 .clearfix:after {
   visibility: hidden;
   display: block;
@@ -81,11 +100,5 @@ body {
   clear: both;
   height: 0;
 }
-* html .clearfix {
-  zoom: 1;
-}
-/* IE6 */
-*:first-child + html .clearfix {
-  zoom: 1;
-}
-/* IE7 */
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
