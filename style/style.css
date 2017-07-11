@@ -1,10 +1,16 @@
-* {
-  box-sizing: border-box;
-}
 body {
   margin: 0;
   background-color: orange;
   font-family: Arial, sans-serif;
+}
+.wrapper {
+  opacity: 0.0;
+  transition-property: opacity;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+.app-loaded {
+  opacity: 1.0;
 }
 .empty {
   text-align: center;
@@ -67,11 +73,11 @@ body {
 .product-price {
   float: left;
 }
+.product-info .buy {
+  margin-bottom: 10px;
+}
 .product-info .buy button {
   float: right;
-}
-.product-info .forms {
-  margin-top: 10px;
 }
 .clearfix:after {
   visibility: hidden;

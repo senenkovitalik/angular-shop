@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" ng-app="myShopingList">
 <head>
 	<title>Angular</title>
-  <script src="node_modules/chance/chance.js"></script>
-	<script src="node_modules/angular/angular.min.js"></script>
-  <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script src="node_modules/chance/chance.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
 </head>
 <body>
 
-<div ng-app="myShopingList" ng-controller="pageCtrl as page">
+<div class="wrapper" ng-app="myShopingList" ng-controller="pageCtrl as page" ng-class="{'app-loaded': true}">
 
-  <div class="main-container clearfix" ng-controller="productsCtrl">
+  <div class="clearfix" ng-controller="productsCtrl">
 
     <div class="empty" ng-show="products.length === 0">
       <h1>Sorry, but we don't have any products:-(</h1>
@@ -47,75 +47,114 @@
                 <div class="product-price">{{x.price}}</div>
                 <button class="btn btn-default" ng-disabled="{{x.isAvailable}}">Buy</button>
             </div>    
-            <div class="forms">
+            <div ng-controller="PanelController as panel">
                 <ul class="nav nav-pills nav-justified">
-                    <li class="active"><a data-toggle="pill" href="#menu1">Menu item</a></li>
-                    <li><a data-toggle="pill" href="#reviews">Reviews</a></li>
-                    <li><a data-toggle="pill" href="#specifications">Specifications</a></li>
+                    <li ng-class="{ active: panel.isSelected(1) }">
+                        <a href ng-click="panel.selectTab(1)">Description</a>
+                    </li>
+                    <li ng-class="{ active: panel.isSelected(2) }">
+                        <a href ng-click="panel.selectTab(2)">Specification</a>
+                    </li>
+                    <li ng-class="{ active: panel.isSelected(3) }">
+                        <a href ng-click="panel.selectTab(3)">Reviews</a>
+                    </li>
                 </ul>
-                <div class="tab-content">
-                    <div id="menu1" class="tab-pane fade in active">
-                        <h3>Menu item</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                    <div id="reviews" class="tab-pane fade">
-                        <h3>Reviews</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                    <div id="specifications" class="tab-pane">
-                        <form>
-                            <div class="form-group">
-                                <label for="weight">Weight:</label>
-                                <input type="number" class="form-control input-sm" ng-model="weight" id="weight" min="0" />
+                <div class="tab-pane" ng-show="panel.isSelected(1)">
+                    <h3>Menu item</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="tab-pane" ng-show="panel.isSelected(2)">
+                    <h3>Reviews</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="tab-pane" ng-show="panel.isSelected(3)">
+                    <form 
+                        novalidate 
+                        name="form" 
+                        ng-controller="ReviewController as review"
+                        ng-submit="review.submitForm();">
+                        <div class="form-group" ng-class="{'has-success has-feedback': form.weight.$valid && form.weight.$dirty}">
+                            <label>Weight:</label>
+                            <input type="number" name="weight" class="form-control input-sm" ng-model="review.product.weight" min="0" required="" />
+                            <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                        </div>
+                        <div 
+                            class="form-group has-feedback" 
+                            ng-class="{'has-success': form.country.$valid && form.country.$dirty, 
+                                       'has-warning': form.country.$invalid && form.country.$dirty}">
+                            <label>Country:</label>
+                            <input 
+                                type="text" 
+                                name="country" 
+                                class="form-control input-sm" 
+                                ng-model="review.product.country" 
+                                ng-pattern="/^[a-zA-Z]+$/"
+                                required="" />
+                            <span 
+                                class="glyphicon form-control-feedback" 
+                                ng-class="{'glyphicon-ok': form.country.$valid, 
+                                           'glyphicon-remove': form.country.$invalid && form.country.$dirty}">
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>Angles:</label>
+                            <select class="form-control input-sm" ng-model="review.product.angles">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tech. description:</label>
+                            <textarea class="form-control input-sm" rows="5" ng-model="review.product.tech"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label><input type="checkbox" class="input-sm" ng-model="review.product.pretty">Pretty</label>
+                            </div>    
+                        </div>
+                        <div class="form-group">
+                            <label>Gender:</label>
+                            <div class="radio-inline">
+                                <label><input type="radio" ng-model="review.product.gender" value="Male">Male</label>
                             </div>
-                            <div class="form-group">
-                                <label for="country">Country:</label>
-                                <input type="text" class="form-control input-sm" ng-model="country" id="country" />
+                            <div class="radio-inline">
+                                <label><input type="radio" ng-model="review.product.gender" value="Female">Female</label>
                             </div>
-                            <div class="form-group">
-                                <label for="angles">Angles:</label>
-                                <select class="form-control input-sm" id="angles">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="tech">Tech. description:</label>
-                                <textarea class="form-control input-sm" rows="5" id="tech" ng-model="tech"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label><input type="checkbox" class="input-sm" ng-model="pretty">Pretty</label>
-                                </div>    
-                            </div>
-                            <div class="form-group">
-                                <div class="radio-inline">
-                                    <label><input type="radio" name="optradio" checked="checked">Male</label>
+                        </div>
+                        <div class="form-group">
+                            <label>Color:</label>
+                            <div class="clearfix">
+                                <div class="col-sm-9" style="padding-left: 0;">
+                                    <select class="input-sm" style="width: 100%;" ng-model="review.color">
+                                        <option ng-repeat="color in review.colors">{{color}}</option>
+                                    </select>
                                 </div>
-                                <div class="radio-inline">
-                                    <label><input type="radio" name="optradio">Female</label>
+                                <div class="col-sm-3" style="padding-right: 0;">
+                                    <button class="btn btn-primary btn-sm pull-right" ng-click="review.addColor(review.color)">&plus; another one</button>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                            <blockquote style="margin-top: 5px;">Colors: {{review.arr.join(", ")}}</blockquote>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success" ng-disabled="{{form.$ivalid}}">Submit</button>
+                        </div>
+                        <pre>product = {{review.product | json}}</pre>
+                    </form>
                 </div>
             </div>
         </div>
       </div>
     </div>
-
   </div>
-
 </div>
 
 <script src="myApp.js"></script>
 <script src="PageController.js"></script>
 <script src="ProductsController.js"></script>
+<script src="PanelController.js"></script>
+<script src="ReviewController.js"></script>
 
 </body>
 </html>
