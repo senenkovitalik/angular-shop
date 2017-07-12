@@ -1,7 +1,13 @@
 app.controller("ReviewController", function() {
   this.product = {
+    weight: null,
+    country: null,
     gender: "Male",
-    colors: ""
+    angles: "1",
+    tech: null,
+    pretty: false,
+    gender: "Male",
+    colors: null
   };
 
   this.colors = ["Red", "Green", "Blue", "Yellow"];

@@ -34,18 +34,26 @@
     </div>
 
     <div class="products">
-        <div ng-repeat="x in products | orderBy : orderValue : reverse" class="product-item" ng-class="{'product-item-list': list}">
-            <div class="product-image" ng-class="{'product-image-list': list}">
-            <img ng-src="{{x.image}}" width="400" height="300">
+        <div 
+            ng-repeat="x in products | orderBy : orderValue : reverse" 
+            class="product-item" 
+            ng-class="{'product-item-list': list}">
+            <div 
+                class="product-image" 
+                ng-class="{'product-image-list': list}">
+            <img 
+                ng-src="{{x.image}}" 
+                width="400" 
+                height="300">
         </div>
         <div class="product-info" ng-class="{'product-info-list': list}">
             <div class="product-name">{{x.name}}</div>
-            <div class="some-info">
-                <p>{{x.description}}</p>
-            </div>
+            <div class="some-info"><p>{{x.description}}</p></div>
             <div class="buy clearfix">
-                <div class="product-price">{{x.price}}</div>
-                <button class="btn btn-default" ng-disabled="{{x.isAvailable}}">Buy</button>
+                <div class="product-price">&#36;{{x.price}}</div>
+                <button 
+                    class="btn btn-default" 
+                    ng-disabled="{{x.isAvailable}}">Buy</button>
             </div>    
             <div ng-controller="PanelController as panel">
                 <ul class="nav nav-pills nav-justified">
@@ -60,12 +68,12 @@
                     </li>
                 </ul>
                 <div class="tab-pane" ng-show="panel.isSelected(1)">
-                    <h3>Menu item</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h3>Description</h3>
+                    <p>{{ x.desc }}</p>
                 </div>
                 <div class="tab-pane" ng-show="panel.isSelected(2)">
                     <h3>Reviews</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>{{ x.spec }}</p>
                 </div>
                 <div class="tab-pane" ng-show="panel.isSelected(3)">
                     <form 
@@ -73,10 +81,21 @@
                         name="form" 
                         ng-controller="ReviewController as review"
                         ng-submit="review.submitForm();">
-                        <div class="form-group" ng-class="{'has-success has-feedback': form.weight.$valid && form.weight.$dirty}">
+                        <div 
+                            class="form-group" 
+                            ng-class="{'has-success has-feedback': form.weight.$valid && form.weight.$dirty}">
                             <label>Weight:</label>
-                            <input type="number" name="weight" class="form-control input-sm" ng-model="review.product.weight" min="0" required="" />
-                            <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <input 
+                                type="number" 
+                                name="weight" 
+                                class="form-control input-sm" 
+                                ng-model="review.product.weight" 
+                                min="0" 
+                                required="" />
+                            <span 
+                                class="glyphicon form-control-feedback" 
+                                ng-class="{'glyphicon-ok': form.weight.$valid, 
+                                           'glyphicon-remove': form.weight.$invalid && form.weight.$dirty}"></span>
                         </div>
                         <div 
                             class="form-group has-feedback" 
@@ -91,14 +110,18 @@
                                 ng-pattern="/^[a-zA-Z]+$/"
                                 required="" />
                             <span 
-                                class="glyphicon form-control-feedback" 
+                                class="glyphicon form-control-feedback"
                                 ng-class="{'glyphicon-ok': form.country.$valid, 
-                                           'glyphicon-remove': form.country.$invalid && form.country.$dirty}">
+                                           'glyphicon-remove': form.country.$invalid && form.country.$dirty}" 
+                                >
                             </span>
                         </div>
                         <div class="form-group">
                             <label>Angles:</label>
-                            <select class="form-control input-sm" ng-model="review.product.angles">
+                            <select 
+                                class="form-control input-sm" 
+                                ng-model="review.product.angles"
+                                required="" >
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -138,9 +161,11 @@
                             <blockquote style="margin-top: 5px;">Colors: {{review.arr.join(", ")}}</blockquote>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" ng-disabled="{{form.$ivalid}}">Submit</button>
+                            <button 
+                                type="submit" 
+                                class="btn btn-success" 
+                                ng-disabled="form.$invalid">Submit</button>
                         </div>
-                        <pre>product = {{review.product | json}}</pre>
                     </form>
                 </div>
             </div>
