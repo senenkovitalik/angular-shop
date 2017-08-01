@@ -4,7 +4,7 @@
   "description": "Homework",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server -p 8080 -a 127.0.0.1"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
     "bootstrap": "^3.3.7",
     "chance": "^1.0.10",
     "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "less": "^2.7.2"
   }
 }

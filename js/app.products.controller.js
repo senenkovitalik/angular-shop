@@ -26,7 +26,7 @@ app.controller('productsCtrl', function($scope){
   $scope.orderByMe = function(x) {
     $scope.orderValue = x;
     $scope.reverse = !$scope.reverse;
-  }
+  };
 
   $scope.nameArrow = "&uarr;";
   $scope.priceArrow = "&uarr;";

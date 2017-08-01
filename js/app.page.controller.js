@@ -1,4 +1,4 @@
-app.controller('pageCtrl', function($scope){
+app.controller('pageCtrl', ['$scope', function($scope){
   $scope.list = false;
   this.changeViewMode = function(view) {
     switch (view) {
@@ -10,4 +10,4 @@ app.controller('pageCtrl', function($scope){
         break;
     }
   }
-});
+}]);

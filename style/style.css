@@ -1,3 +1,11 @@
+* html .clearfix {
+  zoom: 1;
+}
+/* IE6 */
+*:first-child + html .clearfix {
+  zoom: 1;
+}
+/* IE7 */
 body {
   margin: 0;
   background-color: orange;
@@ -41,6 +49,14 @@ body {
 .product-item-list {
   width: 100%;
 }
+.product-item-list:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
 .product-image {
   width: 400px;
   height: 300px;
@@ -79,19 +95,3 @@ body {
 .product-info .buy button {
   float: right;
 }
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
-* html .clearfix {
-  zoom: 1;
-}
-/* IE6 */
-*:first-child + html .clearfix {
-  zoom: 1;
-}
-/* IE7 */

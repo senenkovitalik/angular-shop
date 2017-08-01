@@ -1,0 +1,94 @@
+<div class="product-item" ng-class="{'product-item-list': list}">
+    <div class="product-image" ng-class="{'product-image-list': list}">
+        <img ng-src="{{x.image}}" width="400" height="300">
+    </div>
+
+    <div class="product-info" ng-class="{'product-info-list': list}">
+        <div class="product-name">{{x.name}}</div>
+        <div class="some-info"><p>{{x.description}}</p></div>
+        <div class="buy clearfix">
+            <div class="product-price">&#36;{{x.price}}</div>
+            <button class="btn btn-default" ng-disabled="x.isAvailable">Buy</button>
+        </div>
+
+        <div ng-controller="PanelController as panel">
+            <ul class="nav nav-pills nav-justified">
+                <li ng-class="{ active: panel.isSelected(1) }">
+                    <a href ng-click="panel.selectTab(1)">Description</a>
+                </li>
+                <li ng-class="{ active: panel.isSelected(2) }">
+                    <a href ng-click="panel.selectTab(2)">Specification</a>
+                </li>
+                <li ng-class="{ active: panel.isSelected(3) }">
+                    <a href ng-click="panel.selectTab(3)">Reviews</a>
+                </li>
+            </ul>
+            <div class="tab-pane" ng-show="panel.isSelected(1)">
+                <h3>Description</h3>
+                <p>{{ x.desc }}</p>
+            </div>
+            <div class="tab-pane" ng-show="panel.isSelected(2)">
+                <h3>Reviews</h3>
+                <p>{{ x.spec }}</p>
+            </div>
+            <div class="tab-pane" ng-show="panel.isSelected(3)">
+                <form novalidate name="form" ng-controller="ReviewController as review" ng-submit="review.submitForm();">
+                    <div class="form-group" ng-class="{'has-success has-feedback': form.weight.$valid && form.weight.$dirty}">
+                        <label>Weight:</label>
+                        <input type="number" name="weight" class="form-control input-sm" ng-model="review.product.weight" min="0" required=""/>
+                        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': form.weight.$valid, 'glyphicon-remove': form.weight.$invalid && form.weight.$dirty}"></span>
+                    </div>
+                    <div class="form-group has-feedback" ng-class="{'has-success': form.country.$valid && form.country.$dirty, 'has-warning': form.country.$invalid && form.country.$dirty}">
+                        <label>Country:</label>
+                        <input type="text" name="country" class="form-control input-sm" ng-model="review.product.country" ng-pattern="/^[a-zA-Z]+$/" required=""/>
+                        <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': form.country.$valid, 'glyphicon-remove': form.country.$invalid && form.country.$dirty}"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Angles:</label>
+                        <select class="form-control input-sm" ng-model="review.product.angles" required="">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tech. description:</label>
+                        <textarea class="form-control input-sm" rows="5" ng-model="review.product.tech"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" class="input-sm" ng-model="review.product.pretty">Pretty</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender:</label>
+                        <div class="radio-inline">
+                            <label><input type="radio" ng-model="review.product.gender" value="Male">Male</label>
+                        </div>
+                        <div class="radio-inline">
+                            <label><input type="radio" ng-model="review.product.gender" value="Female">Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Color:</label>
+                        <div class="clearfix">
+                            <div class="col-sm-9" style="padding-left: 0;">
+                                <select class="input-sm" style="width: 100%;" ng-model="review.color">
+                                    <option ng-repeat="color in review.colors">{{color}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3" style="padding-right: 0;">
+                                <button class="btn btn-primary btn-sm pull-right" ng-click="review.addColor(review.color, $event)">&plus; another one</button>
+                            </div>
+                        </div>
+                        <blockquote style="margin-top: 5px;">Colors: {{review.arr.join(", ")}}</blockquote>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" ng-disabled="form.$invalid">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
