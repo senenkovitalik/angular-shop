@@ -20,6 +20,25 @@ body {
 .app-loaded {
   opacity: 1.0;
 }
+.basket {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.basket .btn-big {
+  width: 70px;
+  height: 70px;
+  font-size: 25px;
+}
+.basket .btn-big .badge-red {
+  background-color: red;
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 .empty {
   text-align: center;
   margin-top: 300px;

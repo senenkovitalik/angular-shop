@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-	<title>Angular</title>
+    <title>Angular</title>
     <script src="node_modules/chance/dist/chance.min.js"></script>
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
@@ -15,34 +15,38 @@
 
 <div class="wrapper" ng-app="myShopingList" ng-controller="pageCtrl as page" ng-class="{'app-loaded': true}">
 
-  <div class="clearfix" ng-controller="productsCtrl">
+    <div class="clearfix" ng-controller="productsCtrl">
 
-    <div class="empty" ng-show="products.length === 0">
-      <h1>Sorry, but we don't have any products:-(</h1>
-    </div>
+        <basket></basket>
 
-    <div class="controls" ng-hide="products.length === 0">
-      Sortings
-      <button ng-click="orderByMe('name'); toggleArrow('name');">
-        Name <span ng-bind-html="nameArrow"></span>
-      </button>
-      <button ng-click="orderByMe('price'); toggleArrow('price');">
-        Price <span ng-bind-html="priceArrow"></span>
-      </button>
-      View
-      <button ng-click="page.changeViewMode('table')" ng-disabled="!list">Table</button>
-      <button ng-click="page.changeViewMode('list')" ng-disabled="list">List</button>
-    </div>
+        <div class="empty" ng-show="products.length === 0">
+            <h1>Sorry, but we don't have any products:-(</h1>
+        </div>
 
-    <div class="products">
-        <product-item product="x" list="list" ng-repeat="x in products | orderBy : orderValue : reverse"></product-item>
+        <div class="controls" ng-hide="products.length === 0">
+            Sortings
+            <button ng-click="orderByMe('name'); toggleArrow('name');">
+                Name <span ng-bind-html="nameArrow"></span>
+            </button>
+            <button ng-click="orderByMe('price'); toggleArrow('price');">
+                Price <span ng-bind-html="priceArrow"></span>
+            </button>
+            View
+            <button ng-click="page.changeViewMode('table')" ng-disabled="!list">Table</button>
+            <button ng-click="page.changeViewMode('list')" ng-disabled="list">List</button>
+        </div>
+
+        <div class="products">
+            <product-item product="x" list="list" ng-repeat="x in products | orderBy : orderValue : reverse"></product-item>
+        </div>
     </div>
-  </div>
 </div>
 
 <script src="js/myApp.js"></script>
 <script src="js/app.page.controller.js"></script>
 <script src="js/app.products.controller.js"></script>
+<script src="js/basket/basket.module.js"></script>
+<script src="js/basket/basket.directive.js"></script>
 <script src="js/product-item/product-item.module.js"></script>
 <script src="js/product-item/product-item.directive.js"></script>
 <script src="js/product-item/product-item.panel.controller.js"></script>
