@@ -23,7 +23,6 @@ angular.module('productItem')
   };
 
   this.submitForm = function() {
-    console.log("We need to submit this form data:");
-    console.log(this.product);
+    console.log('Product for review: ', this.product);
   }
 });

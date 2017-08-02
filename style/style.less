@@ -29,7 +29,7 @@ body {
 }
 
 .basket {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   margin-top: 10px;
@@ -46,6 +46,37 @@ body {
       top: 10px;
       right: 10px;
     }
+  }
+}
+
+.basket-item {
+  margin-bottom: 25px;
+  a {
+    float: left;
+    text-decoration: none;
+    .remove-product {
+      border: 1px solid red;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      margin-right: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        color: red;
+        top: 0;
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+  img {
+    width: 200px;
+    height: 150px;
+    float: left;
+    margin-right: 20px;
   }
 }
 
@@ -126,7 +157,7 @@ body {
 .product-info {
   .buy {
     margin-bottom: 10px;
-    button {
+    a {
       float: right;
     }
   }

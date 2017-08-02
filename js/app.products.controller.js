@@ -1,4 +1,5 @@
-app.controller('productsCtrl', function($scope){
+angular.module('myShoppingList')
+.controller('productsCtrl', ['$scope', function($scope){
   const images = chance.shuffle([
     "images/1.jpg",
     "images/2.jpg",
@@ -14,7 +15,7 @@ app.controller('productsCtrl', function($scope){
       price: chance.floating({min: 0, max: 500, fixed: 2}),
       image: images[i],
       description: chance.paragraph({sentences: 3}), 
-      isAvailable: chance.bool({likelihood: 75}),
+      isAvailable: chance.bool({likelihood: 25}),
       desc: chance.sentence({words: 25}),
       spec: chance.sentence({words: 25})
     };
@@ -39,5 +40,5 @@ app.controller('productsCtrl', function($scope){
         $scope.priceArrow = ($scope.priceArrow === "&uarr;") ? "&darr;" : "&uarr;";
         break;
     }
-  }
-});
+  };
+}]);

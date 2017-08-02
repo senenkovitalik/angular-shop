@@ -1,4 +1,4 @@
-const app = angular.module("myShopingList", [
+angular.module("myShoppingList", [
   'ngSanitize',
   'basket',
   'productItem'
