@@ -16,9 +16,9 @@
             </div>
             <div class="modal-body">
                 <p ng-hide="products.length" style="text-align: center;">Basket is empty:)</p>
-                <div class="promo">
+                <div class="promo" ng-show="products.length">
                     <p>Maybe you have a promo? Please enter in here: <input ng-model="promo" style="width: 50px;">
-                        <button class="btn btn-success" style="margin-left: 10px;">Go!</button>
+                        <button class="btn btn-success" ng-click="usePromo($event)" style="margin-left: 10px;">Go!</button>
                     </p>
                 </div>
                 <div ng-repeat="x in products" class="basket-item clearfix">
@@ -30,10 +30,11 @@
                     <img ng-src="{{x.image}}">
                     <div>
                         <p>{{x.name | uppercase}}</p>
-                        <p>{{x.price}} x <input type="number" min="1" ng-init="amount=1" ng-model="amount" style="width: 40px;"> = {{x.price*amount | number : 2}}</p>
+                        <p>{{x.price}} x <input type="number" min="1" ng-model="x.amount" style="width: 40px;"> = {{x.price*x.amount | number : 2}}</p>
                         <p>{{x.description}}</p>
                     </div>
                 </div>
+                <button class="btn btn-success btn-lg" ng-click="toOrder()">Continue</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

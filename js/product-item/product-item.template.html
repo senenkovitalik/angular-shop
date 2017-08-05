@@ -8,7 +8,7 @@
         <div class="some-info"><p>{{x.description}}</p></div>
         <div class="buy clearfix">
             <div class="product-price">&#36;{{x.price}}</div>
-            <a href class="btn btn-default" ng-disabled="x.isAvailable" ng-click="buy(x, $event)">Buy</a>
+            <button class="btn btn-default" ng-disabled="checkBasket()" ng-click="buy()">{{value}}</button>
         </div>
 
         <div ng-controller="PanelController as panel">

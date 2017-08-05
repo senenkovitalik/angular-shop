@@ -4,6 +4,7 @@ module("myShoppingList").
     const products = [];
 
     function addProduct(product) {
+      product.amount = 1;
       products.push(product);
     }
 

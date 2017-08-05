@@ -15,7 +15,7 @@ angular.module('myShoppingList')
       price: chance.floating({min: 0, max: 500, fixed: 2}),
       image: images[i],
       description: chance.paragraph({sentences: 3}), 
-      isAvailable: chance.bool({likelihood: 25}),
+      isAvailable: chance.bool(),
       desc: chance.sentence({words: 25}),
       spec: chance.sentence({words: 25})
     };

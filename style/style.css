@@ -141,6 +141,6 @@ body {
 .product-info .buy {
   margin-bottom: 10px;
 }
-.product-info .buy a {
+.product-info .buy button {
   float: right;
 }

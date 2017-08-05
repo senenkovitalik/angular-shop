@@ -7,12 +7,26 @@ angular.module('productItem')
       list: '='
     },
     controller: function($scope, buy) {
-      $scope.buy = function(product, event) {
-        buy.addToBasket(product);
-        const elem = event.target;
-        elem.innerHTML = 'In the basket<span class="glyphicon glyphicon-shopping-cart"></span>';
-        elem.disabled = true; // need to fix this !!!
-      }
+
+      $scope.value = 'Buy';
+
+      $scope.checkBasket = function() {
+        if (!$scope.x.isAvailable) {
+          return true;
+        } else {
+          if (buy.getProducts().indexOf($scope.x) > -1) {
+            $scope.value = 'In basket';
+            return true;
+          } else {
+            $scope.value = 'Buy';
+            return false;
+          }
+        }
+      };
+
+      $scope.buy = function() {
+        buy.addToBasket($scope.x);
+      };
     },
     templateUrl: '/js/product-item/product-item.template.html'
   }
