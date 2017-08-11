@@ -14,9 +14,11 @@
 <body>
 
 <div class="wrapper" ng-app="myShoppingList" ng-controller="pageCtrl as page" ng-class="{'app-loaded': true}">
-    <div class="clearfix" ng-controller="productsCtrl">
+    <div class="clearfix" ng-controller="productsController">
 
         <basket></basket>
+
+        <promo></promo>
 
         <div class="empty" ng-show="products.length === 0">
             <h1>Sorry, but we don't have any products:-(</h1>
@@ -36,19 +38,29 @@
         </div>
 
         <div class="products">
-            <product-item product="x" list="list" ng-repeat="x in products | orderBy : orderValue : reverse"></product-item>
+            <product-item ng-repeat="x in products | orderBy : orderValue : reverse"></product-item>
         </div>
     </div>
 </div>
 
 <script src="js/myApp.js"></script>
 <script src="js/app.buy.service.js"></script>
+<script src="js/app.promo.service.js"></script>
 <script src="js/app.page.controller.js"></script>
 <script src="js/app.products.controller.js"></script>
+
 <script src="js/basket/basket.module.js"></script>
 <script src="js/basket/basket.directive.js"></script>
+<script src="js/basket/basket.controller.js"></script>
+<script src="js/basket/basket.modal.directive.js"></script>
+
+<script src="js/promo/promo.module.js"></script>
+<script src="js/promo/promo.directive.js"></script>
+<script src="js/promo/promo.controller.js"></script>
+
 <script src="js/product-item/product-item.module.js"></script>
 <script src="js/product-item/product-item.directive.js"></script>
+<script src="js/product-item/product-item.my-popover.directive.js"></script>
 <script src="js/product-item/product-item.panel.controller.js"></script>
 <script src="js/product-item/product-item.review.controller.js"></script>
 

@@ -1,4 +1,4 @@
-angular.module('productItem')
+angular.module('myShoppingList')
 .controller('PanelController', function() {
   this.tab = 1;
 

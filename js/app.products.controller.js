@@ -1,5 +1,5 @@
 angular.module('myShoppingList')
-.controller('productsCtrl', ['$scope', function($scope){
+.controller('productsController', ['$scope', 'buy', ($scope, buy) => {
   const images = chance.shuffle([
     "images/1.jpg",
     "images/2.jpg",
@@ -14,7 +14,7 @@ angular.module('myShoppingList')
       name: chance.word({syllables: 3}),
       price: chance.floating({min: 0, max: 500, fixed: 2}),
       image: images[i],
-      description: chance.paragraph({sentences: 3}), 
+      description: chance.paragraph({sentences: 3}),
       isAvailable: chance.bool(),
       desc: chance.sentence({words: 25}),
       spec: chance.sentence({words: 25})
@@ -33,12 +33,18 @@ angular.module('myShoppingList')
   $scope.priceArrow = "&uarr;";
   $scope.toggleArrow = function(arg) {
     switch (arg) {
-      case 'name':
-        $scope.nameArrow = ($scope.nameArrow === "&uarr;") ? "&darr;" : "&uarr;";
-        break;
-      case 'price':
-        $scope.priceArrow = ($scope.priceArrow === "&uarr;") ? "&darr;" : "&uarr;";
-        break;
+    case 'name':
+      $scope.nameArrow = ($scope.nameArrow === "&uarr;") ? "&darr;" : "&uarr;";
+      break;
+    case 'price':
+      $scope.priceArrow = ($scope.priceArrow === "&uarr;") ? "&darr;" : "&uarr;";
+      break;
     }
   };
+
+  $scope.buy = (prod) => {
+    console.log('Try to buy product: ', prod);
+    buy.addProduct(prod);
+  };
+
 }]);

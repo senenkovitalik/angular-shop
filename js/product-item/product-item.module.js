@@ -1,1 +1,1 @@
-angular.module("productItem", []);
+angular.module('productItem', []);

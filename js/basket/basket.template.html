@@ -1,44 +1,40 @@
-<div class="basket">
-    <button class="btn btn-primary btn-big" data-toggle="modal" data-target="#myModal">
+<div ng-controller="basketController">
+    <button basket-modal class="basket btn btn-primary btn-lg">
         <span class="glyphicon glyphicon-shopping-cart"></span>
-        <span class="badge badge-red" ng-show="products.length">{{products.length}}</span>
+        <span class="badge" ng-if="count() > 0">{{count()}}</span>
     </button>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Products in the basket</h4>
-            </div>
-            <div class="modal-body">
-                <p ng-hide="products.length" style="text-align: center;">Basket is empty:)</p>
-                <div class="promo" ng-show="products.length">
-                    <p>Maybe you have a promo? Please enter in here: <input ng-model="promo" style="width: 50px;">
-                        <button class="btn btn-success" ng-click="usePromo($event)" style="margin-left: 10px;">Go!</button>
-                    </p>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Products in the basket</h4>
                 </div>
-                <div ng-repeat="x in products" class="basket-item clearfix">
-                    <a href ng-click="remove(x)">
-                        <div class="remove-product">
-                            <span class="glyphicon glyphicon-remove"></span>
+                <div class="modal-body">
+                    <p ng-hide="products.length" style="text-align: center;">Basket is empty:)</p>
+                    <div ng-repeat="x in products" class="basket-item clearfix">
+                        <a href ng-click="remove(x)">
+                            <div class="remove-product">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </a>
+                        <img ng-src="{{x.image}}">
+                        <div>
+                            <p>{{x.name | uppercase}}</p>
+                            <p>{{x.price}} x <input type="number" min="1" ng-init="amount=1" ng-model="amount" style="width: 40px;"> = {{x.price*amount | number : 2}}</p>
+                            <p>{{x.description}}</p>
                         </div>
-                    </a>
-                    <img ng-src="{{x.image}}">
-                    <div>
-                        <p>{{x.name | uppercase}}</p>
-                        <p>{{x.price}} x <input type="number" min="1" ng-model="x.amount" style="width: 40px;"> = {{x.price*x.amount | number : 2}}</p>
-                        <p>{{x.description}}</p>
+                    </div>
+                    <div class="text-center" ng-if="products.length">
+                        <button class="btn btn-success btn-lg" ng-click="toOrder()">Continue</button>
                     </div>
                 </div>
-                <button class="btn btn-success btn-lg" ng-click="toOrder()">Continue</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+
         </div>
     </div>
 </div>

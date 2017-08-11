@@ -1,4 +1,4 @@
-angular.module('productItem')
+angular.module('myShoppingList')
 .controller("ReviewController", function() {
   this.product = {
     weight: null,

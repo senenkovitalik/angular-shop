@@ -69,6 +69,16 @@ body {
   float: left;
   margin-right: 20px;
 }
+.promo {
+  position: fixed;
+  right: 0;
+  top: 100px;
+  width: 300px;
+  background-color: white;
+  padding: 15px;
+  margin-right: 10px;
+  font-size: 18px;
+}
 .empty {
   text-align: center;
   margin-top: 300px;
@@ -143,4 +153,7 @@ body {
 }
 .product-info .buy button {
   float: right;
+}
+.product-info .buy .popover-content button {
+  float: left;
 }
